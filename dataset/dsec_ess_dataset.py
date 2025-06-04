@@ -100,26 +100,28 @@ class ESS_DSEC_Dataset(Dataset):
         print(f"Found {len(self.timestamps)} timestamps.")
         return semantic_paths
 
-dt = ESS_DSEC_Dataset(data_dir='/media/geoffroy/T7/Thèse/Datasets/DSEC/train_semantic_segmentation/train', event_dir='/media/geoffroy/T7/Thèse/Datasets/DSEC/train_events/')
 
-print(f"Dataset has {len(dt)} elements")
+if __name__ == "__main__":
+    dt = ESS_DSEC_Dataset(data_dir='/media/geoffroy/T7/Thèse/Datasets/DSEC/train_semantic_segmentation/ train', event_dir='/media/geoffroy/T7/Thèse/Datasets/DSEC/train_events/')
 
-idx = 0
-events, label = dt[idx]
-print(events.keys())
-print(label)
+    print(f"Dataset has {len(dt)} elements")
 
-from visualisation import plot_event_frame, plot_semantic_label
-dim = (max(events['y'] + 1), max(events['x'] + 1))
-print(dim)
+    idx = 0
+    events, label = dt[idx]
+    print(events.keys())
+    print(label)
 
-plt.figure()
-plt.subplot(1,2,1)
-plot_event_frame(events, dim)
-plt.title("Event Histogram")
+    from visualisation import plot_event_frame, plot_semantic_label
+    dim = (max(events['y'] + 1), max(events['x'] + 1))
+    print(dim)
 
-plt.subplot(1,2,2)
-plot_semantic_label(label)
-plt.title("Semantic Segmentation Label")
-plt.show()
+    plt.figure()
+    plt.subplot(1,2,1)
+    plot_event_frame(events, dim)
+    plt.title("Event Histogram")
+
+    plt.subplot(1,2,2)
+    plot_semantic_label(label)
+    plt.title("Semantic Segmentation Label")
+    plt.show()
 
